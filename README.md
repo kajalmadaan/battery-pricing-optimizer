@@ -1,7 +1,7 @@
 # Battery Optimization Simulation
 
 A simple Python model simulating battery charging/discharging behavior based on:
-- Hourly demand (random or real input)
+- Hourly demand
 - Grid electricity price variations
 - Fixed selling price to customers
 
