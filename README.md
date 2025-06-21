@@ -1,4 +1,18 @@
-# battery-optimizer
+# Battery Optimization Simulation
 
+A simple Python model simulating battery charging/discharging behavior based on:
+- Hourly demand (random or real input)
+- Grid electricity price variations
+- Fixed selling price to customers
 
+## Features
 
+- Models profit based on battery use vs direct grid use.
+- Compares different battery sizes (e.g. 10 kWh vs 60 kWh).
+- Illustrates profitability over 24 hours.
+
+## To Run
+
+```bash
+pip install matplotlib numpy
+python battery_optimizer.py
