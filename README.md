@@ -1,1 +1,1 @@
-# battery-pricing-optimizer
+# battery-optimizer
