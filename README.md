@@ -13,6 +13,13 @@ A simple Python model simulating battery charging/discharging behavior based on:
 
 ## To Run
 
-```bash
 pip install matplotlib numpy scikit-learn
 python battery_optimizer.py
+
+## Output
+
+Battery size: 10 kWh — Total Profit: 6.92 €
+Battery size: 60 kWh — Total Profit: 9.21 €
+Predicted Demand: 47.81 kWh
+Dynamic Price: €0.45/kWh
+Battery Action: standby
