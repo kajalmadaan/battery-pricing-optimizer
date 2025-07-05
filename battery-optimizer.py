@@ -78,3 +78,58 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from datetime import datetime
+
+# Example training data: [hour of day, temperature, weekday] → demand
+X_train = np.array([
+    [9, 22, 1], [12, 30, 1], [18, 27, 1], 
+    [9, 15, 0], [12, 18, 0], [18, 20, 0]
+])
+y_train = np.array([20, 35, 50, 15, 30, 45])  # Historical demand values (kWh)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict demand for current conditions
+now = datetime.now()
+current_hour = now.hour
+temperature = 25  # Example temperature
+weekday = 1 if now.weekday() < 5 else 0
+
+X_pred = np.array([[current_hour, temperature, weekday]])
+predicted_demand = model.predict(X_pred)[0]
+
+
+def compute_dynamic_price(grid_cost, demand, competitors):
+    base_price = grid_cost + 0.10  # margin
+    demand_surcharge = 0.01 * (demand - 20)  # markup if demand is high
+    competitive_discount = 0.05 if competitors < 3 else 0.00
+    return round(base_price + demand_surcharge - competitive_discount, 2)
+
+grid_cost = 0.12  # €/kWh
+competitors = 2
+
+price = compute_dynamic_price(grid_cost, predicted_demand, competitors)
+
+
+def compute_battery_action(price, soc, grid_status):
+    if soc < 30 and grid_status == "off-peak":
+        return "charge"
+    elif soc > 70 and price > 0.25:
+        return "discharge"
+    else:
+        return "standby"
+
+battery_soc = 50  # battery state of charge in %
+grid_status = "peak"  # could be real-time from grid API
+
+battery_action = compute_battery_action(price, battery_soc, grid_status)
+
+
+print(f"Predicted Demand: {predicted_demand:.2f} kWh")
+print(f"Dynamic Price: €{price}/kWh")
+print(f"Battery Action: {battery_action}")
