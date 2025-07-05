@@ -14,5 +14,5 @@ A simple Python model simulating battery charging/discharging behavior based on:
 ## To Run
 
 ```bash
-pip install matplotlib numpy
+pip install matplotlib numpy scikit-learn
 python battery_optimizer.py
