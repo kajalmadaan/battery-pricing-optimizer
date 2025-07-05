@@ -10,6 +10,7 @@ A simple Python model simulating battery charging/discharging behavior based on:
 - Models profit based on battery use vs direct grid use.
 - Compares different battery sizes (e.g. 10 kWh vs 60 kWh).
 - Illustrates profitability over 24 hours.
+- Predict demand, battery action.
 
 ## To Run
 
